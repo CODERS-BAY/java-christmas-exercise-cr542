@@ -1,8 +1,8 @@
 package model;
 
-public class Presents {
+public class Present {
 
-	public Presents() {
+	public Present() {
 		// TODO Auto-generated constructor stub
 	}
 

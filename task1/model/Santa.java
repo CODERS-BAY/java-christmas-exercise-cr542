@@ -6,4 +6,7 @@ public class Santa {
 		// TODO Auto-generated constructor stub
 	}
 
+	public void getPresentOverview() {
+		
+	}
 }

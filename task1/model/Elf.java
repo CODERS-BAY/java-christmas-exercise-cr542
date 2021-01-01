@@ -6,7 +6,13 @@ public class Elf {
 	private String rank;
 	
 	public Elf() {
-		// TODO Auto-generated constructor stub
+		this.name = "Frodo";
+		this.rank = "Lakai";
+	}
+	
+	public Elf(String name, String rank) {
+		this.name = name;
+		this.rank = rank;
 	}
 
 }

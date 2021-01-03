@@ -6,7 +6,7 @@ public class Elf {
 	private String rank;
 	
 	public Elf() {
-		this.name = "Frodo";
+		this.name = "Default";
 		this.rank = "Lakai";
 	}
 	

@@ -4,21 +4,42 @@ public class Child {
 
 	private String name;
 	private int age;
-	private Present present;
 	private String city;
 	
 	public Child() {
 		this.name = "Tom";
 		this.age = 7;
-		this.present = new Present();
 		this.city = "Entenhausen";
 	}
 	
-	public Child(String name, int age, Present present, String city) {
+	public Child(String name, int age, String city) {
 		this.name = name;
 		this.age = age;
-		this.present = present;
 		this.city = city;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 }

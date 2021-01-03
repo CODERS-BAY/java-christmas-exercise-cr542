@@ -4,6 +4,9 @@ import model.Present;
 import model.Sledge;
 
 public class ElfController {
+	private boolean loggedSanta = false;
+	private boolean loggedChild = false;
+	private String usernameLogged = "";
 	
 	public ElfController() {
 		System.out.println("[System] Controller geladen.");
@@ -34,9 +37,37 @@ public class ElfController {
 	public void sort(Present[] storage) {
 		// sort the presents
 	}
-	
+
 	/*
-	 * 
-	 * sledge should be prepared here
+	 * =======================
+	 * ======= SESSION =======
+	 * =======================
 	 */
+	
+	public void setLogin(String user) {
+		if(user.equalsIgnoreCase("santa")) {
+			this.loggedSanta = true;
+			this.usernameLogged = "santa";
+		} else {
+			this.loggedChild = true;
+			this.usernameLogged = user;
+		}
+	}
+	
+	public void logout() {
+		this.loggedChild = false;
+		this.loggedSanta = false;
+	}
+	
+	public String getLoggedUser() {
+		if(this.loggedSanta == true) {
+			return "santa";
+		} else if(this.loggedChild == true) {
+			return this.usernameLogged;
+		} else {
+			return "[System] No active login.";
+		}
+	}
+
+	
 }

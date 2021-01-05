@@ -1,10 +1,5 @@
 package application;
 
-import controller.ElfController;
-import model.Child;
-import model.Present;
-import model.Santa;
-import model.Sledge;
 import view.Console;
 
 public class Main {

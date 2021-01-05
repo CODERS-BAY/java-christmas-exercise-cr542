@@ -8,7 +8,16 @@ public class ElfController {
 	private boolean loggedChild = false;
 	private String usernameLogged = "";
 	
+	Present[] storage;	// Test purposes
+	Sledge s;	// Test purposes
+	
 	public ElfController() {
+		System.out.println("[System] Lade Komponenten ...");
+		storage = new Present[3];
+		System.out.println("[System] Lager wird initialisiert (3 Speicherplätze)");
+		s = new Sledge(3);
+		System.out.println("[System] Schlitten initialisiert (3 Cargoplätze)");
+		System.out.println("[System] .... bitte warten ....\n");
 		System.out.println("[System] Controller geladen.");
 	}
 	
@@ -40,7 +49,7 @@ public class ElfController {
 
 	/*
 	 * =======================
-	 * ======= SESSION =======
+	 * ======= Session =======
 	 * =======================
 	 */
 	
@@ -69,5 +78,27 @@ public class ElfController {
 		}
 	}
 
+	/*
+	 * =======================
+	 * == Santa's Functions ==
+	 * =======================
+	 */
+	
+	public void showStorage() {
+
+	}
+	
+	public void showCargoOverview() {
+		this.s.showLoadedCargo();
+	}
+	
+	public void printAllChilds() {
+		
+	}
+	
+	public void printSledgeStatus() {
+		
+	}
+	
 	
 }

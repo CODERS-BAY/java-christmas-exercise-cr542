@@ -46,7 +46,7 @@ public class Present {
 	}
 	
 	public void outPrint() {
-		System.out.println("[Storage] Geschenk für: "+this.getChildName()+" | Artikel: "+this.getName()+" | Gewicht: "+this.getWeight()+".");
+		System.out.println("[Storage] Present for: "+this.getChildName()+" | Article: "+this.getName()+" | Weight: "+this.getWeight()+".");
 		
 	}
 

@@ -3,9 +3,13 @@ package view;
 import java.util.Scanner;
 
 import controller.ElfController;
+import model.Present;
+import model.Sledge;
 
 public class Console {
-
+	Present[] storage;	// Test purposes
+	Sledge s;	// Test purposes
+	
 	Scanner userInput = new Scanner(System.in);
 	ElfController controller = new ElfController();
 	
@@ -30,6 +34,22 @@ public class Console {
 		System.out.println("[+] Hi Santa!");
 		System.out.println("[+] What do you want to do?");
 		System.out.println("[+] 1 = Display all Childs | 2 = Display all presents | 3 = Check sledge status");
+		int choice = userInput.nextInt();
+		
+		switch (choice) {
+		case 1: 
+			controller.printAllChilds();
+			break;
+		case 2: 
+			controller.showStorage();
+			break;
+		case 3:
+			controller.printSledgeStatus();
+			this.displayMenu();
+			break;
+		default:
+			System.out.println("[System] Invalid option. Please retry.");
+		}
 	}
 	
 	public void dialogChild() {

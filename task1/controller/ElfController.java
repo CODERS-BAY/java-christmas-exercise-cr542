@@ -1,49 +1,48 @@
 package controller;
 
+import model.Child;
 import model.Present;
 import model.Sledge;
+import view.Console;
 
 public class ElfController {
 	private boolean loggedSanta = false;
 	private boolean loggedChild = false;
 	private String usernameLogged = "";
 	
-	Present[] storage;	// Test purposes
-	Sledge s;	// Test purposes
+	Sledge s = new Sledge(3);
+	Present[] storage = new Present[3];
+	Child[] childs = new Child[3];
 	
 	public ElfController() {
-		System.out.println("[System] Lade Komponenten ...");
-		storage = new Present[3];
-		System.out.println("[System] Lager wird initialisiert (3 Speicherplätze)");
-		s = new Sledge(3);
-		System.out.println("[System] Schlitten initialisiert (3 Cargoplätze)");
-		System.out.println("[System] .... bitte warten ....\n");
-		System.out.println("[System] Controller geladen.");
+		System.out.println("[System] Loading components...");
+		System.out.println("[System] Storage is being initialised (3 Slots)");
+		System.out.println("[System] Sledge is being initialised (3 Slots)");
+		System.out.println("[System] .... please wait ....\n");
+		System.out.println("[System] Controller loaded successfully.");
 	}
 	
-	/*
-	 * Methoden:
-	 * - sortieren
-	 * 
-	 */
-	
-	public void addPresent(Present[] storage, Present p, int index) {
-		storage[index] = p;
+	public void addChild(Child c, int index) {
+		this.childs[index] = c;
 	}
 	
-	public void loadCargo(Present[] storage, Sledge s) {
-		System.out.println("[ElfMessage] Die Beladung des Schlittens wurde gestartet.");
-		if(storage.length == s.getCargoArea().length) {
-			System.arraycopy(storage, 0, s.getCargoArea(), 0, storage.length);
-			System.out.println("[ElfMessage] Der Schlitten wurde erfolgreich beladen!\n");
-			s.setReady(true);
+	public void addPresent(Present p, int index) {
+		this.storage[index] = p;
+	}
+	
+	public void loadCargo() {
+		System.out.println("[ElfMessage] Loading procedure started.");
+		if(this.storage.length == this.s.getCargoArea().length) {
+			System.arraycopy(this.storage, 0, s.getCargoArea(), 0, this.storage.length);
+			System.out.println("[ElfMessage] Sledge has been loaded successfully!\n");
+			this.s.setReady(true);
 		} else {
-			System.out.println("[ElfMessage] Schlitten wurde nicht beladen - Lager übersteigt Kapazität des Schlittens!\n");
+			System.out.println("[ElfMessage] Sledge could not be loaded - to less space (Storage > Sledge)!\n");
 		}
 		
 	}
 	
-	public void sort(Present[] storage) {
+	public void sort() {
 		// sort the presents
 	}
 
@@ -85,19 +84,28 @@ public class ElfController {
 	 */
 	
 	public void showStorage() {
-
-	}
-	
-	public void showCargoOverview() {
-		this.s.showLoadedCargo();
+		for (int i = 0; i < this.storage.length; i++) {
+			this.storage[i].outPrint();
+			System.out.println();
+		}
+		// TODO back to main menu
 	}
 	
 	public void printAllChilds() {
-		
+		for (int i = 0; i < childs.length; i++) {
+			this.childs[i].outPrint();
+			System.out.println();
+		}
+		// TODO back to main menu
 	}
 	
 	public void printSledgeStatus() {
-		
+		if(this.s.isReady()) {
+			System.out.println("[Elf] Sledge is ready for takeoff.");
+		} else {
+			System.out.println("[Elf] Sledge is not ready, please standby.");
+			// TODO back to main menu
+		}
 	}
 	
 	

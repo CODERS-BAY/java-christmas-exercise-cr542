@@ -10,12 +10,6 @@ public class Sledge {
 	
 	public Sledge(int capacity) {
 		cargoArea = new Present[capacity];
-//		System.out.println();
-//		System.out.println("[Elf] Schlitten wird aufgebaut ...");
-//		System.out.println("[Elf] Füttere die Rentiere ...");
-//		System.out.println("[Elf] Noselight = ON ...");
-//		System.out.println("[Elf] Schlitten ist einsatzbereit!");
-//		System.out.println();
 	}
 	
 	public void setReady(boolean ready) {

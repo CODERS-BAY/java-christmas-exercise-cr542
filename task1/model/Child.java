@@ -41,5 +41,9 @@ public class Child {
 	public String getName() {
 		return name;
 	}
+	
+	public String outPrint() {
+		return "Name: "+this.name+" | Age: "+this.age+" | City: "+this.city+".";
+	}
 
 }

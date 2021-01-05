@@ -53,7 +53,7 @@ public class Console {
 	}
 	
 	public void dialogChild() {
-		System.out.println("[*] Hi "+controller.getLoggedUser()+"! This is Santa Clause speaking.");
+		System.out.println("[*] Hi "+controller.getLoggedUser()+"! This is Santa Clause.");
 		System.out.println("[*] Please answer the following questions. This will make it easier for me to bring you a present!");
 		System.out.println("[*] What do you want?");
 		String presentName = userInput.nextLine();

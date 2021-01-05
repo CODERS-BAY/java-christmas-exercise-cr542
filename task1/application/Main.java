@@ -10,7 +10,9 @@ public class Main {
 		/*
 		 * - Create child objects
 		 * - Create present objects
-		 * - 
+		 * - Test actions: 
+		 * 		-- Santa's output (view presents and childs)
+		 * 		-- Child adding wish to list
 		 */
 
 		

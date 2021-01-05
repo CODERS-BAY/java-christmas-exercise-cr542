@@ -7,7 +7,7 @@ public class Elf {
 	
 	public Elf() {
 		this.name = "Default";
-		this.rank = "Lakai";
+		this.rank = "Beginner";
 	}
 	
 	public Elf(String name, String rank) {

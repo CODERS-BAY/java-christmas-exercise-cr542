@@ -1,16 +1,19 @@
 package model;
+import java.util.ArrayList;
 
 public class Sledge {
 	
 	private boolean isReady = false;
-	private Present[] cargoArea;
+//	private Present[] cargoArea;
 
+	private ArrayList<Present> cargoArea = new ArrayList<Present>();
+	
 	public Sledge() {
 	}
 	
-	public Sledge(int capacity) {
-		cargoArea = new Present[capacity];
-	}
+//	public Sledge(int capacity) {
+//		cargoArea = new Present[capacity];
+//	}
 	
 	public void setReady(boolean ready) {
 		this.isReady = ready;
@@ -20,13 +23,17 @@ public class Sledge {
 		return isReady;
 	}
 	
-	public Present[] getCargoArea() {
+	public void loadPresent(Present p) {
+		cargoArea.add(p);
+	}
+	
+	public ArrayList<Present> getCargoArea() {
 		return this.cargoArea;
 	}
 	
 	public void showLoadedCargo() {
-		for (int i = 0; i < cargoArea.length; i++) {
-			cargoArea[i].outPrint();
+		for (int i = 0; i < cargoArea.size(); i++) {
+			cargoArea.get(i).outPrint();
 		}
 	}
 }

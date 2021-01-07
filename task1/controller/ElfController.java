@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import model.Child;
 import model.Present;
 import model.Sledge;
@@ -10,9 +12,12 @@ public class ElfController {
 	private boolean loggedChild = false;
 	private String usernameLogged = "";
 	
-	Sledge s = new Sledge(3);
-	Present[] storage = new Present[3];
-	Child[] childs = new Child[3];
+	Sledge s = new Sledge();
+//	Present[] storage = new Present[3];
+//	Child[] childs = new Child[3];
+	
+	ArrayList<Present> storage = new ArrayList<Present>();
+	ArrayList<Child> childs = new ArrayList<Child>();
 	
 	public ElfController() {
 		System.out.println("[System] Loading components...");
@@ -22,28 +27,45 @@ public class ElfController {
 		System.out.println("[System] Controller loaded successfully.");
 	}
 	
-	public void addChild(Child c, int index) {
-		this.childs[index] = c;
+//	TODO Overhauling method addChild() => parameter = Child object?
+	public void addChild(String name, int age, String city) {
+		try {
+			Child c = new Child(name, age, city);
+			childs.add(c);
+			System.out.println("[System] Child has been successfully added.");
+		} catch(Exception e) {
+			System.out.println("[System] Something went wrong adding a child. Please retry");
+		}
+
 	}
 	
-	public void addPresent(Present p, int index) {
-		this.storage[index] = p;
-	}
-	
-	public void loadCargo() {
-		System.out.println("[ElfMessage] Loading procedure started.");
-		if(this.storage.length == this.s.getCargoArea().length) {
-			System.arraycopy(this.storage, 0, s.getCargoArea(), 0, this.storage.length);
-			System.out.println("[ElfMessage] Sledge has been loaded successfully!\n");
-			this.s.setReady(true);
-		} else {
-			System.out.println("[ElfMessage] Sledge could not be loaded - to less space (Storage > Sledge)!\n");
+//	TODO Overhauling method addPresent() => parameter = Present object?
+	public void addPresent(String name, double weight, Child child) {
+		try {
+			Present p = new Present(name, weight, child);
+			storage.add(p);
+			System.out.println("[System] Present has been successfully added to storage.");
+		} catch(Exception e) {
+			System.out.println("[System] Something went wrong adding a present. Please retry");
 		}
 		
 	}
 	
+	public void loadCargo() {
+		System.out.println("[Elf] Loading procedure started.");
+		System.out.println("[Elf] ... please wait ...");
+		
+		for (int i = 0; i < storage.size(); i++) {
+			Present p = storage.get(i);
+			s.loadPresent(p);
+			System.out.println("[Elf] Present successfully loaded and secured at cargo place: "+i);
+		}
+		
+		System.out.println("[Elf] Loading procedure completed successfully.");
+	}
+	
 	public void sort() {
-		// sort the presents
+		// TODO Sort the presents
 	}
 
 	/*
@@ -54,24 +76,25 @@ public class ElfController {
 	
 	public void setLogin(String user) {
 		if(user.equalsIgnoreCase("santa")) {
-			this.loggedSanta = true;
-			this.usernameLogged = "santa";
+			loggedSanta = true;
+			usernameLogged = "santa";
 		} else {
-			this.loggedChild = true;
-			this.usernameLogged = user;
+			loggedChild = true;
+			usernameLogged = user;
 		}
 	}
 	
 	public void logout() {
-		this.loggedChild = false;
-		this.loggedSanta = false;
+		loggedChild = false;
+		loggedSanta = false;
+		System.out.println("[System] Session closed.");
 	}
 	
 	public String getLoggedUser() {
-		if(this.loggedSanta == true) {
+		if(loggedSanta == true) {
 			return "santa";
-		} else if(this.loggedChild == true) {
-			return this.usernameLogged;
+		} else if(loggedChild == true) {
+			return usernameLogged;
 		} else {
 			return "[System] No active login.";
 		}
@@ -84,27 +107,32 @@ public class ElfController {
 	 */
 	
 	public void showStorage() {
-		for (int i = 0; i < this.storage.length; i++) {
-			this.storage[i].outPrint();
-			System.out.println();
+		try {
+			for (int i = 0; i < storage.size(); i++) {
+				storage.get(i).outPrint();
+			}
+		} catch(NullPointerException e) {
+			System.out.println("[System] No Presents found in storage. Going back to menu ....\n");
 		}
-		// TODO back to main menu
+
 	}
 	
 	public void printAllChilds() {
-		for (int i = 0; i < childs.length; i++) {
-			this.childs[i].outPrint();
-			System.out.println();
+		try {
+			for (int i = 0; i < childs.size(); i++) {
+				childs.get(i).outPrint();
+			}	
+		} catch(NullPointerException e) {
+			System.out.println("[System] No Childs found. Going back to menu ....\n");
 		}
-		// TODO back to main menu
+
 	}
 	
 	public void printSledgeStatus() {
-		if(this.s.isReady()) {
-			System.out.println("[Elf] Sledge is ready for takeoff.");
+		if(s.isReady()) {
+			System.out.println("[System] Sledge is ready for takeoff.");
 		} else {
-			System.out.println("[Elf] Sledge is not ready, please standby.");
-			// TODO back to main menu
+			System.out.println("[System] Sledge is not ready, please standby.");
 		}
 	}
 	

@@ -7,8 +7,6 @@ import model.Present;
 import model.Sledge;
 
 public class Console {
-	Present[] storage;	// Test purposes
-	Sledge s;	// Test purposes
 	
 	Scanner userInput = new Scanner(System.in);
 	ElfController controller = new ElfController();
@@ -18,15 +16,15 @@ public class Console {
 		String userName = userInput.nextLine();
 		controller.setLogin(userName);
 		
-		this.displayMenu();
+		displayMenu();
 	}
 	
 	public void displayMenu() {
 		String loggedUsr = controller.getLoggedUser();
 		if(loggedUsr.equalsIgnoreCase("santa")) {
-			this.dialogSanta();
+			dialogSanta();
 		} else {
-			this.dialogChild();
+			dialogChild();
 		}
 	}
 	
@@ -34,42 +32,69 @@ public class Console {
 		System.out.println("[+] Hi Santa!");
 		System.out.println("[+] What do you want to do?");
 		System.out.println("[+] 1 = Display all Childs | 2 = Display all presents | 3 = Check sledge status");
+		System.out.println("[+] Press any other key to logout.");
 		int choice = userInput.nextInt();
 		
 		switch (choice) {
 		case 1: 
 			controller.printAllChilds();
-			break;
+			displayMenu();
 		case 2: 
 			controller.showStorage();
-			break;
+			displayMenu();
 		case 3:
 			controller.printSledgeStatus();
-			this.displayMenu();
-			break;
+			displayMenu();
 		default:
-			System.out.println("[System] Invalid option. Please retry.");
+			controller.logout();
+			dialog();
 		}
 	}
 	
 	public void dialogChild() {
+		System.out.println("Adding a child for test purposes:\n");
+		
+		controller.addChild("Test", 12, "Teststadt");
+		
+		System.out.println();
+		
+		controller.printAllChilds();
+		dialog();
+	}
+	
+	public void dialogChildWIP() {
 		System.out.println("[*] Hi "+controller.getLoggedUser()+"! This is Santa Clause.");
 		System.out.println("[*] Please answer the following questions. This will make it easier for me to bring you a present!");
-		System.out.println("[*] What do you want?");
+		/*
+		 * Child specific questions
+		 */
+		String childName = controller.getLoggedUser();
+		System.out.println("[*] How old are you");
+		int childAge = userInput.nextInt();
+		System.out.println("[*] Where do you live?");
+		String livingPlace = userInput.nextLine();
+		/*
+		 * Present specific questions
+		 */
+		System.out.println("[*] What do you want for Christmas?");
 		String presentName = userInput.nextLine();
 		System.out.println("[*] What's the weight of your present (just estimate)?");
 		double presentWeight = userInput.nextDouble();
 		
-		// TODO fix Scanner here => Throws exception because of double/String/int
+//		TODO Fix Scanner => Throws exception because of double/String/int
 		
-		System.out.println("[*] How old are you?");
-		userInput.nextLine();
-		int childAge = userInput.nextInt();
-		System.out.println("[*] Where do you live?");
-		String livingPlace = userInput.nextLine();
+
+//		TODO Create object => Child
+		controller.addChild(childName, childAge, livingPlace);
+//		TODO Create object => Present
+//		controller.addPresent(presentName, presentWeight, ???);
 		
-		System.out.println("[*] Received your wish, "+controller.getLoggedUser());
+		System.out.println("[*] Received your wish, "+childName);
 		System.out.println("[*] Present: "+presentName+" | Weight: "+presentWeight+" | Age: "+childAge+" | Town: "+livingPlace);
+	
+		System.out.println("[*] Logging you out now! Thank you for using my brand new software!");
+		controller.logout();
+		dialog();
 	}
 	
 	

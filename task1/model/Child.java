@@ -7,9 +7,9 @@ public class Child {
 	private String city;
 	
 	public Child() {
-		this.name = "Tom";
-		this.age = 7;
-		this.city = "Entenhausen";
+		name = "Tom";
+		age = 7;
+		city = "Entenhausen";
 	}
 	
 	public Child(String name, int age, String city) {
@@ -43,7 +43,7 @@ public class Child {
 	}
 	
 	public String outPrint() {
-		return "Name: "+this.name+" | Age: "+this.age+" | City: "+this.city+".";
+		return "Name: "+name+" | Age: "+age+" | City: "+city+".";
 	}
 
 }

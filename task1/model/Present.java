@@ -7,8 +7,15 @@ public class Present {
 	private Child child;
 	
 	public Present() {
-		this.name = "Lego";
-		this.weight = 2.5;
+		name = "Lego";
+		weight = 2.5;
+		child = null;
+	}
+	
+	public Present(Child c) {
+		name = "Lego";
+		weight = 2.5;
+		child = c;
 	}
 	
 	public Present(String name, double weight, Child child) {
@@ -46,7 +53,7 @@ public class Present {
 	}
 	
 	public void outPrint() {
-		System.out.println("[Storage] Present for: "+this.getChildName()+" | Article: "+this.getName()+" | Weight: "+this.getWeight()+".");
+		System.out.println("[Storage] Present for: "+getChildName()+" | Article: "+getName()+" | Weight: "+getWeight()+".");
 		
 	}
 

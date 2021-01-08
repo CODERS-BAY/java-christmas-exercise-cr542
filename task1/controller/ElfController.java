@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import model.Child;
 import model.Present;
 import model.Sledge;
-import view.Console;
 
 public class ElfController {
 	private boolean loggedSanta = false;
@@ -13,11 +12,9 @@ public class ElfController {
 	private String usernameLogged = "";
 	
 	Sledge s = new Sledge();
-//	Present[] storage = new Present[3];
-//	Child[] childs = new Child[3];
 	
 	ArrayList<Present> storage = new ArrayList<Present>();
-	ArrayList<Child> childs = new ArrayList<Child>();
+	ArrayList<Child> children = new ArrayList<Child>();
 	
 	public ElfController() {
 		System.out.println("[System] Loading components...");
@@ -27,11 +24,9 @@ public class ElfController {
 		System.out.println("[System] Controller loaded successfully.");
 	}
 	
-//	TODO Overhauling method addChild() => parameter = Child object?
-	public void addChild(String name, int age, String city) {
+	public void addChild(Child c) {
 		try {
-			Child c = new Child(name, age, city);
-			childs.add(c);
+			children.add(c);
 			System.out.println("[System] Child has been successfully added.");
 		} catch(Exception e) {
 			System.out.println("[System] Something went wrong adding a child. Please retry");
@@ -39,10 +34,8 @@ public class ElfController {
 
 	}
 	
-//	TODO Overhauling method addPresent() => parameter = Present object?
-	public void addPresent(String name, double weight, Child child) {
+	public void addPresent(Present p) {
 		try {
-			Present p = new Present(name, weight, child);
 			storage.add(p);
 			System.out.println("[System] Present has been successfully added to storage.");
 		} catch(Exception e) {
@@ -87,7 +80,7 @@ public class ElfController {
 	public void logout() {
 		loggedChild = false;
 		loggedSanta = false;
-		System.out.println("[System] Session closed.");
+		System.out.println("[System] Session closed.\n");
 	}
 	
 	public String getLoggedUser() {
@@ -96,7 +89,7 @@ public class ElfController {
 		} else if(loggedChild == true) {
 			return usernameLogged;
 		} else {
-			return "[System] No active login.";
+			return "[System] No active login.\n";
 		}
 	}
 
@@ -109,9 +102,9 @@ public class ElfController {
 	public void showStorage() {
 		try {
 			for (int i = 0; i < storage.size(); i++) {
-				storage.get(i).outPrint();
+				System.out.println(storage.get(i).outPrint());
 			}
-		} catch(NullPointerException e) {
+		} catch(Exception e) {
 			System.out.println("[System] No Presents found in storage. Going back to menu ....\n");
 		}
 
@@ -119,22 +112,43 @@ public class ElfController {
 	
 	public void printAllChilds() {
 		try {
-			for (int i = 0; i < childs.size(); i++) {
-				childs.get(i).outPrint();
+			for (int i = 0; i < children.size(); i++) {
+				System.out.println(children.get(i).outPrint());
 			}	
-		} catch(NullPointerException e) {
-			System.out.println("[System] No Childs found. Going back to menu ....\n");
+		} catch(Exception e) {
+			System.out.println("[System] No Childs found in database. Going back to menu ....\n");
 		}
 
 	}
 	
+	public void printChild(int index) {
+			System.out.println(children.get(index).outPrint());
+	}
+	
 	public void printSledgeStatus() {
 		if(s.isReady()) {
-			System.out.println("[System] Sledge is ready for takeoff.");
+			System.out.println("[System] Sledge is ready for takeoff.\n");
 		} else {
-			System.out.println("[System] Sledge is not ready, please standby.");
+			System.out.println("[System] Sledge is not ready, please standby.\n");
 		}
 	}
 	
+
+	public void search(String name) {
+		try {
+			for (int i = 0; i < children.size(); i++) {
+				String cName = children.get(i).getName();
+				if(cName.equalsIgnoreCase(name)) {
+					System.out.println("[System] Found child. Displaying details below: ");
+					printChild(i);
+					break;
+				}
+			}
+			System.out.println("[System] No child found. Going back to menu ....\n");
+		} catch(Exception e) {
+			System.out.println("[System] Error while trying to search child. Going back to menu ....\n");
+		}
+
+	}
 	
 }

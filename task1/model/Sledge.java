@@ -4,16 +4,10 @@ import java.util.ArrayList;
 public class Sledge {
 	
 	private boolean isReady = false;
-//	private Present[] cargoArea;
-
 	private ArrayList<Present> cargoArea = new ArrayList<Present>();
 	
 	public Sledge() {
 	}
-	
-//	public Sledge(int capacity) {
-//		cargoArea = new Present[capacity];
-//	}
 	
 	public void setReady(boolean ready) {
 		this.isReady = ready;

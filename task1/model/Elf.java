@@ -6,8 +6,8 @@ public class Elf {
 	private String rank;
 	
 	public Elf() {
-		this.name = "Default";
-		this.rank = "Beginner";
+		name = "Default";
+		rank = "Beginner";
 	}
 	
 	public Elf(String name, String rank) {

@@ -52,8 +52,8 @@ public class Present {
 		this.child = child;
 	}
 	
-	public void outPrint() {
-		System.out.println("[Storage] Present for: "+getChildName()+" | Article: "+getName()+" | Weight: "+getWeight()+".");
+	public String outPrint() {
+		return "[Storage] Present for: "+getChildName()+" | Article: "+getName()+" | Weight: "+getWeight()+".";
 		
 	}
 

@@ -32,7 +32,7 @@ public class Console {
 		System.out.println("[+] Hi Santa!");
 		System.out.println("[+] What do you want to do?");
 		System.out.println("[+] 1 = Display all Childs | 2 = Display all presents | 3 = Check sledge status");
-		System.out.println("[+] 4 = Search for a child | 5 = Get the sledge ready");
+		System.out.println("[+] 4 = Search for a child | 5 = Get the sledge ready (auto-logout afterwards!)");
 		System.out.println("[+] Press any other key to logout.");
 		int choice = userInput.nextInt();
 		
@@ -72,12 +72,12 @@ public class Console {
 		 */
 		System.out.println("[*] How old are you?");
 		int childAge = Integer.parseInt(userInput.next());
-		System.out.println("[*] Where do you live?");
+		System.out.println("[*] Where do you live? (Please use one single word, like \"NewYork\", we are working on a patch to fix this issue.");
 		String livingPlace = userInput.next();
 		/*
 		 * Present specific questions
 		 */
-		System.out.println("[*] What do you want for Christmas?");
+		System.out.println("[*] What do you want for Christmas? (Please use one single word, like \"HouseRoboter\", we are working on a patch to fix this issue");
 		String presentName = userInput.next();
 		System.out.println("[*] What's the weight of your present (just estimate)?");
 		double presentWeight = Double.parseDouble(userInput.next());

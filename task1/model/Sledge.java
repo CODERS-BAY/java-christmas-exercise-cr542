@@ -27,7 +27,7 @@ public class Sledge {
 	
 	public void showLoadedCargo() {
 		for (int i = 0; i < cargoArea.size(); i++) {
-			cargoArea.get(i).outPrint();
+			System.out.println(cargoArea.get(i).outPrintSledge());
 		}
 	}
 }

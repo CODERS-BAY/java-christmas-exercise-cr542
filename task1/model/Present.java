@@ -1,6 +1,6 @@
 package model;
 
-public class Present {
+public class Present implements Comparable<Present> {
 
 	private String name;
 	private double weight;
@@ -44,9 +44,21 @@ public class Present {
 		return child.getName();
 	}
 	
+	public String getDeliverTo() {
+		return deliverTo;
+	}
+	
 	public String outPrint() {
-		return "[Storage] Present for: "+getChildName()+" | Article: "+getName()+" | Weight: "+getWeight()+".";
-		
+		return "[Storage] Present for: "+getChildName()+" | Article: "+getName()+" | Weight: "+getWeight()+" | Destination: "+getDeliverTo();	
+	}
+	
+	public String outPrintSledge() {
+		return "[Sledge] DESTINATION: "+getDeliverTo()+" || Present for: "+getChildName()+" | Article: "+getName()+" | Weight: "+getWeight();
+	}
+
+	@Override
+	public int compareTo(Present p) {
+		return this.deliverTo.compareTo(p.getDeliverTo());
 	}
 
 }

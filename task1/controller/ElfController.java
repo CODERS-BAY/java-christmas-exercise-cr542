@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import model.Child;
 import model.Present;
@@ -47,6 +48,7 @@ public class ElfController {
 	public void loadCargo() {
 		System.out.println("[Elf] Loading procedure started.");
 		System.out.println("[Elf] ... please wait ...");
+		sortPresents();
 		
 		for (int i = 0; i < storage.size(); i++) {
 			Present p = storage.get(i);
@@ -55,10 +57,16 @@ public class ElfController {
 		}
 		
 		System.out.println("[Elf] Loading procedure completed successfully.");
+		s.setReady(true);
+		System.out.println("[Elf] Displaying loaded cargo below for final approvement:\n");
+		
+		s.showLoadedCargo();
 	}
 	
-	public void sort() {
-		// TODO Sort the presents
+	public void sortPresents() {
+		System.out.println("[Elf] We are now sorting the presents in storage for fast delivery ...");
+		Collections.sort(storage);
+		System.out.println("[Elf] Finished sorting. Presents are now sorted and ready to load on sledge.\n");
 	}
 
 	/*
@@ -136,15 +144,20 @@ public class ElfController {
 
 	public void search(String name) {
 		try {
+			boolean success = false;
 			for (int i = 0; i < children.size(); i++) {
 				String cName = children.get(i).getName();
 				if(cName.equalsIgnoreCase(name)) {
+					success = true;
 					System.out.println("[System] Search successful. Displaying details below: ");
 					printChild(i);
+					System.out.println();
 					break;
 				}
 			}
-			System.out.println("[System] No child found. Going back to menu ....\n");
+			if(!success) {
+				System.out.println("[System] No child found. Please check spelling of name and retry!");
+			}
 		} catch(Exception e) {
 			System.out.println("[System] Error while trying to search child. Going back to menu ....\n");
 		}

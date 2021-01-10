@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"model","l":"Child"},{"p":"view","l":"Console"},{"p":"model","l":"Elf"},{"p":"controller","l":"ElfController"},{"p":"model","l":"LoadingElf"},{"p":"application","l":"Main"},{"p":"model","l":"Present"},{"p":"model","l":"Santa"},{"p":"model","l":"Sledge"},{"p":"model","l":"SortingElf"}]

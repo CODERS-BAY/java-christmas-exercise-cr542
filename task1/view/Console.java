@@ -6,11 +6,32 @@ import controller.ElfController;
 import model.Child;
 import model.Present;
 
+/**
+ * The Console is responsible for handling the views for the users.
+ * Possible logins:
+ * - Child (login with any name)
+ * - Santa Clause (login with "santa")
+ * 
+ * @author Christian Reisenauer
+ * @version 1.0
+ * 
+ */
 public class Console {
 	
+	/**
+	 * userInput is a Scanner object that takes the user input from the console.
+	 */
 	Scanner userInput = new Scanner(System.in);
+	
+	/**
+	 * Loads the controller to have access to specific methods.
+	 */
 	ElfController controller = new ElfController();
 	
+	/**
+	 * Shows the main application dialog which start with a login.
+	 * @since 1.0
+	 */
 	public void dialog() {
 		System.out.println("Please login:");
 		String userName = userInput.next();
@@ -19,6 +40,10 @@ public class Console {
 		displayMenu();
 	}
 	
+	/**
+	 * Refers to the menu depending on which user is logged in.
+	 * @since 1.0
+	 */
 	public void displayMenu() {
 		String loggedUsr = controller.getLoggedUser();
 		if(loggedUsr.equalsIgnoreCase("santa")) {
@@ -28,6 +53,10 @@ public class Console {
 		}
 	}
 	
+	/**
+	 * Shows the dialog for the user "Santa Clause" and calls the needed function(s), according to the users choice.
+	 * @since 1.0
+	 */
 	public void dialogSanta() {
 		System.out.println("[+] Hi Santa!");
 		System.out.println("[+] What do you want to do?");
@@ -55,7 +84,6 @@ public class Console {
 		case 5:
 			controller.loadCargo();
 			controller.printSledgeStatus();
-			System.out.println("\n[System] Have a good flight, Santa! Logging you out now.\n");
 		default:
 			controller.logout();
 			System.out.println();
@@ -63,6 +91,10 @@ public class Console {
 		}
 	}
 	
+	/**
+	 * Shows the dialog for the user "Child", takes data given by the user and stores it in the system.
+	 * @since 1.0
+	 */
 	public void dialogChild() {
 		String childName = controller.getLoggedUser();
 		System.out.println("[*] Hi "+childName+"! This is Santa Clause.");
@@ -95,6 +127,10 @@ public class Console {
 		dialog();
 	}
 	
+	/**
+	 * Displays the search dialog. Only accessible for the user "Santa Clause".
+	 * @since 1.0
+	 */
 	public void searchDialog() {
 		System.out.println("[System] Which child should I search for?\n[System] Please enter the correct name below:");
 		String searchName = userInput.next();

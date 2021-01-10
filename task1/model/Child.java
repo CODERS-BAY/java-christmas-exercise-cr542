@@ -1,17 +1,22 @@
 package model;
-
+/**
+ * The Child class models a Child object and offers specific methods to work with.
+ * @author Christian Reisenauer
+ * @version 1.0
+ *
+ */
 public class Child {
 
 	private String name;
 	private int age;
 	private String city;
 	
-	public Child() {
-		name = "Tom";
-		age = 7;
-		city = "Entenhausen";
-	}
-	
+	/**
+	 * Constructor for a new Child object.
+	 * @param name The name of the child.
+	 * @param age The age of the child.
+	 * @param city The city where the child lives.
+	 */
 	public Child(String name, int age, String city) {
 		this.name = name;
 		this.age = age;
@@ -42,6 +47,10 @@ public class Child {
 		return name;
 	}
 	
+	/**
+	 * Returns a String that describes the Child.
+	 * @return String that describes the Child.
+	 */
 	public String outPrint() {
 		return "Name: "+name+" | Age: "+age+" | City: "+city+".";
 	}

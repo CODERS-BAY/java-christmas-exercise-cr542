@@ -5,39 +5,35 @@ public class Present {
 	private String name;
 	private double weight;
 	private Child child;
+	private String deliverTo;
 	
 	public Present() {
 		name = "Lego";
 		weight = 2.5;
 		child = null;
+		deliverTo = "";
 	}
 	
 	public Present(Child c) {
 		name = "Lego";
 		weight = 2.5;
 		child = c;
+		deliverTo = "Test";
 	}
 	
 	public Present(String name, double weight, Child child) {
 		this.name = name;
 		this.weight = weight;
 		this.child = child;
+		this.deliverTo = child.getCity();
 	}
 	
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public double getWeight() {
 		return weight;
-	}
-
-	public void setWeight(double weight) {
-		this.weight = weight;
 	}
 
 	public Child getChild() {
@@ -46,10 +42,6 @@ public class Present {
 
 	public String getChildName() {
 		return child.getName();
-	}
-	
-	public void setChild(Child child) {
-		this.child = child;
 	}
 	
 	public String outPrint() {

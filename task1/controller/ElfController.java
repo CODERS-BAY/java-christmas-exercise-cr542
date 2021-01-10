@@ -139,7 +139,7 @@ public class ElfController {
 			for (int i = 0; i < children.size(); i++) {
 				String cName = children.get(i).getName();
 				if(cName.equalsIgnoreCase(name)) {
-					System.out.println("[System] Found child. Displaying details below: ");
+					System.out.println("[System] Search successful. Displaying details below: ");
 					printChild(i);
 					break;
 				}

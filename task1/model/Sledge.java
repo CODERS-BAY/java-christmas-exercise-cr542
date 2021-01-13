@@ -1,5 +1,7 @@
 package model;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The Sledge class models a Sledge object and offers specific methods to work with.
@@ -18,7 +20,7 @@ public class Sledge {
 	 * I have chosen to implement an ArrayList because it is a big advantage that it's size doesn't need to be assigned in advance.
 	 * Also it is very easy to sort the data stored in the ArrayList.
 	 */
-	private ArrayList<Present> cargoArea = new ArrayList<Present>();
+	private List<Present> cargoArea = new ArrayList<Present>();
 	
 	/**
 	 * Set the status of the sledge to "ready".
@@ -48,7 +50,7 @@ public class Sledge {
 	 * Returns the cargo area as an ArrayList to work with.
 	 * @return An ArrayList with all the stored cargo.
 	 */
-	public ArrayList<Present> getCargoArea() {
+	public List<Present> getCargoArea() {
 		return this.cargoArea;
 	}
 	
@@ -57,7 +59,7 @@ public class Sledge {
 	 */
 	public void showLoadedCargo() {
 		for (int i = 0; i < cargoArea.size(); i++) {
-			System.out.println(cargoArea.get(i).outPrintSledge());
+			System.out.println(cargoArea.get(i).toStringSledge());
 		}
 	}
 }

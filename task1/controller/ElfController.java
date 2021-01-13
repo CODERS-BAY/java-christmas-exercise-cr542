@@ -1,11 +1,12 @@
 package controller;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
 import model.Child;
 import model.Present;
 import model.Sledge;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * The ElfController class provides the logic for the application and is the interface between model and view.
@@ -24,15 +25,14 @@ public class ElfController {
 	 * Generates a Sledge object that will be loaded with presents.
 	 */
 	Sledge s = new Sledge();
-	
 	/**
 	 * Represents the storage where all the presents are stored until the delivery process starts.
 	 */
-	ArrayList<Present> storage = new ArrayList<Present>();
+	List<Present> storage = new ArrayList<>();
 	/**
 	 * The "database" where all the childs and their data are stored.
 	 */
-	ArrayList<Child> children = new ArrayList<Child>();
+	List<Child> children = new ArrayList<>();
 	
 	public ElfController() {
 		System.out.println("[System] Loading components...");
@@ -149,9 +149,9 @@ public class ElfController {
 	 * @since 1.0
 	 */
 	public String getLoggedUser() {
-		if(loggedSanta == true) {
+		if(loggedSanta) {
 			return "santa";
-		} else if(loggedChild == true) {
+		} else if(loggedChild) {
 			return usernameLogged;
 		} else {
 			return "[System] No active login.\n";
@@ -171,8 +171,8 @@ public class ElfController {
 	public void showStorage() {
 		if(storage.size() != 0) {
 			try {
-				for (int i = 0; i < storage.size(); i++) {
-					System.out.println(storage.get(i).outPrint());
+				for(Present present : storage) {
+					System.out.println(present.toString());
 				}
 			} catch(Exception e) {
 				System.out.println("[System] Error while searching. Please retry.\n");
@@ -189,8 +189,8 @@ public class ElfController {
 	public void printAllChilds() {
 		if(children.size() != 0) {
 			try {
-				for (int i = 0; i < children.size(); i++) {
-					System.out.println(children.get(i).outPrint());
+				for (Child child : children) {
+					System.out.println(child.toString());
 				}	
 			} catch(Exception e) {
 				System.out.println("[System] Error while searching. Please retry.\\n");
@@ -206,7 +206,7 @@ public class ElfController {
 	 * @since 1.0
 	 */
 	public void printChild(int index) {
-			System.out.println(children.get(index).outPrint());
+			System.out.println(children.get(index).toString());
 	}
 	
 	/**

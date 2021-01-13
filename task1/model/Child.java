@@ -51,7 +51,9 @@ public class Child {
 	 * Returns a String that describes the Child.
 	 * @return String that describes the Child.
 	 */
-	public String outPrint() {
+
+	@Override
+	public String toString() {
 		return "Name: "+name+" | Age: "+age+" | City: "+city+".";
 	}
 

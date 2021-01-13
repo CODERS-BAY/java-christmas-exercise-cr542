@@ -1,5 +1,6 @@
 package view;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import controller.ElfController;
@@ -17,12 +18,7 @@ import model.Present;
  * 
  */
 public class Console {
-	
-	/**
-	 * userInput is a Scanner object that takes the user input from the console.
-	 */
-	Scanner userInput = new Scanner(System.in);
-	
+
 	/**
 	 * Loads the controller to have access to specific methods.
 	 */
@@ -33,8 +29,9 @@ public class Console {
 	 * @since 1.0
 	 */
 	public void dialog() {
+		Scanner userInput = new Scanner(System.in);
 		System.out.println("Please login:");
-		String userName = userInput.next();
+		String userName = userInput.nextLine();
 		controller.setLogin(userName);
 
 		displayMenu();
@@ -58,6 +55,7 @@ public class Console {
 	 * @since 1.0
 	 */
 	public void dialogSanta() {
+		Scanner userInput = new Scanner(System.in);
 		System.out.println("[+] Hi Santa!");
 		System.out.println("[+] What do you want to do?");
 		System.out.println("[+] 1 = Display all Childs | 2 = Display all presents | 3 = Check sledge status");
@@ -68,7 +66,6 @@ public class Console {
 		switch (choice) {
 		case 1: 
 			controller.printAllChilds();
-			System.out.println();
 			displayMenu();
 		case 2: 
 			controller.showStorage();
@@ -96,6 +93,9 @@ public class Console {
 	 * @since 1.0
 	 */
 	public void dialogChild() {
+		Scanner userInput = new Scanner(System.in);
+		int childAge = 0;
+		double presentWeight = 0;
 		String childName = controller.getLoggedUser();
 		System.out.println("[*] Hi "+childName+"! This is Santa Clause.");
 		System.out.println("[*] Please answer the following questions. This will make it easier for me to bring you a present!");
@@ -103,17 +103,45 @@ public class Console {
 		 * Child specific questions
 		 */
 		System.out.println("[*] How old are you?");
-		int childAge = Integer.parseInt(userInput.next());
+		try {
+			childAge = userInput.nextInt();
+			userInput.nextLine();
+		} catch (InputMismatchException e) {
+			System.out.println("[*] Please write a value between 1 and 99!\n[*] Invalid input - logging you out now!");
+			userInput = null;
+			controller.logout();
+			dialog();
+		} catch (Exception ex) {
+			System.out.println("[*] An error occured. Please try again! Logging you out now!");
+			userInput = null;
+			controller.logout();
+			dialog();
+		}
 		System.out.println("[*] Where do you live? (Please use one single word, like \"NewYork\", we are working on a patch to fix this issue.");
-		String livingPlace = userInput.next();
+		String livingPlace = userInput.nextLine();
 		/*
 		 * Present specific questions
 		 */
 		System.out.println("[*] What do you want for Christmas? (Please use one single word, like \"HouseRoboter\", we are working on a patch to fix this issue");
-		String presentName = userInput.next();
+		String presentName = userInput.nextLine();
+
 		System.out.println("[*] What's the weight of your present (just estimate)?");
-		double presentWeight = Double.parseDouble(userInput.next());
-		
+		try {
+			presentWeight = userInput.nextDouble();
+		} catch (InputMismatchException e) {
+			System.out.println("[*] Please write a value between 0 and 99,9! Commas are allowed.\n[*] Invalid input - logging you out now!");
+			userInput = null;
+			controller.logout();
+			dialog();
+		}
+
+		if(livingPlace.equals("") || presentName.equals("")) {
+			System.out.println("[*] Not all fields were filled in. Please try again! Logging you out now!");
+			userInput = null;
+			controller.logout();
+			dialog();
+		}
+
 		Child child = new Child(childName, childAge, livingPlace);
 		controller.addChild(child);
 		Present present = new Present(presentName, presentWeight, child);
@@ -132,9 +160,10 @@ public class Console {
 	 * @since 1.0
 	 */
 	public void searchDialog() {
+		Scanner userInput = new Scanner(System.in);
 		System.out.println("[System] Which child should I search for?\n[System] Please enter the correct name below:");
-		String searchName = userInput.next();
-		
+		String searchName = userInput.nextLine();
+
 		controller.search(searchName);
 		dialogSanta();
 	}

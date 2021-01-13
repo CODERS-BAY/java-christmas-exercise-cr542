@@ -51,7 +51,8 @@ public class Present implements Comparable<Present> {
 	 * @since 1.0
 	 * @return String that describes the present.
 	 */
-	public String outPrint() {
+	@Override
+	public String toString() {
 		return "[Storage] Present for: "+getChildName()+" | Article: "+getName()+" | Weight: "+getWeight()+" | Destination: "+getDestination();	
 	}
 	
@@ -60,7 +61,8 @@ public class Present implements Comparable<Present> {
 	 * @since 1.0
 	 * @return String that describes the present already loaded on the sledge.
 	 */
-	public String outPrintSledge() {
+
+	public String toStringSledge() {
 		return "[Sledge] DESTINATION: "+getDestination()+" || Present for: "+getChildName()+" | Article: "+getName()+" | Weight: "+getWeight();
 	}
 
